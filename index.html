@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoiceOps - Calling Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="topbar">
+      <div>
+        <h1>VoiceOps</h1>
+        <p class="subtext">Simple and clear dashboard for your ElevenLabs calling agent</p>
+      </div>
+      <span id="agentState" class="status status-idle">Idle</span>
+    </header>
+
+    <div class="toolbar card">
+      <nav class="tabs">
+        <button type="button" class="tab active" data-target="panel-dialer">New Call</button>
+        <button type="button" class="tab" data-target="panel-activity">Activity</button>
+        <button type="button" class="tab" data-target="panel-settings">Settings</button>
+      </nav>
+      <button type="button" id="themeToggle" class="btn btn-secondary">Toggle Theme</button>
+    </div>
+
+    <section id="panel-dialer" class="panel active">
+      <div class="grid">
+        <article class="card">
+          <h2>Start New Call</h2>
+          <form id="callForm">
+            <label class="label" for="contactName">Contact Name</label>
+            <input id="contactName" type="text" placeholder="e.g. Aditi" required />
+
+            <label class="label" for="phoneNumber">Phone Number</label>
+            <input id="phoneNumber" type="tel" placeholder="+91XXXXXXXXXX" required />
+
+            <label class="label" for="topic">Topic</label>
+            <select id="topic">
+              <option value="tech-news">Tech News Update</option>
+              <option value="product-update">Product Update</option>
+              <option value="follow-up">Customer Follow-up</option>
+            </select>
+
+            <label class="label" for="openingLine">Opening Line</label>
+            <textarea id="openingLine" rows="3" required>Hey, I have a quick update for you. Is now a good time?</textarea>
+
+            <button type="submit" class="btn btn-primary full-width">Place Call</button>
+          </form>
+        </article>
+
+        <article class="card">
+          <h2>Live Metrics</h2>
+          <div class="metrics">
+            <div class="metric-card">
+              <span>Total Calls</span>
+              <strong id="totalCalls">0</strong>
+            </div>
+            <div class="metric-card">
+              <span>Successful</span>
+              <strong id="successCalls">0</strong>
+            </div>
+            <div class="metric-card">
+              <span>Failed</span>
+              <strong id="failedCalls">0</strong>
+            </div>
+          </div>
+
+          <div class="progress-wrap">
+            <div class="progress-label">
+              <span>Success Rate</span>
+              <strong id="successRate">0%</strong>
+            </div>
+            <div class="progress-track">
+              <div id="successBar" class="progress-bar"></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="panel-activity" class="panel">
+      <article class="card">
+        <div class="row-between">
+          <h2>Recent Activity</h2>
+          <button type="button" id="clearLog" class="btn btn-secondary">Clear Log</button>
+        </div>
+        <ul id="activityList" class="activity-list"></ul>
+      </article>
+    </section>
+
+    <section id="panel-settings" class="panel">
+      <article class="card">
+        <h2>Connection Settings</h2>
+        <form id="settingsForm">
+          <label class="label" for="apiEndpoint">Backend Endpoint</label>
+          <input id="apiEndpoint" type="url" placeholder="http://localhost:8000/api/call" />
+
+          <label class="label" for="agentId">Agent ID (Optional)</label>
+          <input id="agentId" type="text" placeholder="agent_123" />
+
+          <button type="submit" class="btn btn-primary">Save Settings</button>
+        </form>
+        <p class="hint">Tip: Leave endpoint empty to run in demo mode.</p>
+      </article>
+    </section>
+  </div>
+
+  <template id="activityTemplate">
+    <li class="activity-item">
+      <div>
+        <strong class="entry-name"></strong>
+        <p class="entry-detail"></p>
+      </div>
+      <span class="entry-status"></span>
+    </li>
+  </template>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
