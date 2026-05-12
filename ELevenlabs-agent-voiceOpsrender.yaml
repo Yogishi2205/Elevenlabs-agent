@@ -8,6 +8,6 @@ services:
   - type: web
     name: elevenlabs-voiceops
     runtime: static
-    plan: free
+    # Do not set `plan: free` here — Render rejects it for web/static; pick Free in the UI or omit plan.
     buildCommand: "echo 'Static files — no build'"
     staticPublishPath: .
