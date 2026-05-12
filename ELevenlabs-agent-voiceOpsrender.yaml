@@ -1,0 +1,13 @@
+# Render Blueprint: VoiceOps static site (HTML + CSS + JS)
+# Docs: https://render.com/docs/blueprint-spec
+#
+# On Render → New → Blueprint:
+#   Set "Blueprint Path" to exactly: ELevenlabs-agent-voiceOpsrender.yaml
+
+services:
+  - type: web
+    name: elevenlabs-voiceops
+    runtime: static
+    plan: free
+    buildCommand: "echo 'Static files — no build'"
+    staticPublishPath: .
